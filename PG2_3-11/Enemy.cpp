@@ -45,16 +45,18 @@ void Enemy::Update(const char* keys) {
 
             if (dist2 <= r2) {
 
-                enemyStatus_[i].hp -= 1;
+                for (int j = 0; j < 2; j++) {
+                    enemyStatus_[j].hp--;
+                    Player::DeactivateBullet();
 
-                Player::DeactivateBullet();
 
-                
-                if (enemyStatus_[i].hp <= 0) {
-                    ResetEnemy(i);
+                    if (enemyStatus_[j].hp <= 0) {
+                        ResetEnemy(j);
+                    }
                 }
 
-                break;
+
+             
             }
         }
     }
